@@ -1,0 +1,16 @@
+# Waaree API setup commands
+
+# Restore all NuGet packages from Waaree.Api.csproj
+dotnet restore
+
+# Run the backend API
+dotnet run
+
+# Open Swagger
+http://localhost:5238/swagger
+
+# Check health
+http://localhost:5238/api/health
+
+# Check Dataverse mode
+http://localhost:5238/api/health/dataverse
