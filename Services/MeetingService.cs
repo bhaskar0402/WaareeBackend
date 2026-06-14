@@ -4,48 +4,56 @@ using Waaree.Api.Models;
 
 namespace Waaree.Api.Services;
 
-// This service handles meeting-related logic.
-// Currently it supports memory mode.
-// Later Dataverse mode will save/read from Dataverse.
+// This service handles meeting-related business logic.
+// It supports both Memory Mode and Dataverse Mode.
 public class MeetingService
 {
     private readonly AppSettings _appSettings;
+    private readonly DataverseMeetingService _dataverseMeetingService;
 
     // Temporary memory storage for local testing
     private static List<Meeting> meetings = new();
 
-    public MeetingService(IOptions<AppSettings> options)
+    public MeetingService(
+        IOptions<AppSettings> options,
+        DataverseMeetingService dataverseMeetingService)
     {
         _appSettings = options.Value;
+        _dataverseMeetingService = dataverseMeetingService;
     }
 
+    // Get all meetings
     public List<Meeting> GetAll()
     {
-        // If Dataverse is enabled, later we will call DataverseService here
+        // If Dataverse mode is ON, read meetings from Dataverse
         if (_appSettings.UseDataverse)
         {
-            // Placeholder for future Dataverse logic
-            return meetings;
+            var result = _dataverseMeetingService.GetMeetings();
+
+            if (result.Success && result.Data != null)
+            {
+                return result.Data;
+            }
+
+            return new List<Meeting>();
         }
 
-        // Memory mode
+        // If Dataverse mode is OFF, read from memory
         return meetings;
     }
 
+    // Add/create new meeting
     public void Add(Meeting meeting)
     {
-        // Temporary auto ID for memory mode
-        meeting.Id = meetings.Count + 1;
-
-        // If Dataverse is enabled, later we will save to Dataverse here
+        // If Dataverse mode is ON, save meeting into Dataverse
         if (_appSettings.UseDataverse)
         {
-            // Placeholder for future Dataverse logic
-            meetings.Add(meeting);
+            _dataverseMeetingService.CreateMeeting(meeting);
             return;
         }
 
-        // Memory mode
+        // If Dataverse mode is OFF, save meeting into memory
+        meeting.Id = meetings.Count + 1;
         meetings.Add(meeting);
     }
 }

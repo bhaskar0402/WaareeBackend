@@ -18,15 +18,23 @@ public class AuthController : ControllerBase
 
     // POST: /api/auth/login
     // This API logs in user by mobile number
-    [HttpPost("login")]
-    public IActionResult Login(LoginRequest request)
-    {
-        var user = _authService.LoginByMobile(request.Mobile);
+[HttpPost("login")]
+public IActionResult Login(LoginRequest request)
+{
+    var user = _authService.LoginByMobile(request.Mobile);
 
-        return Ok(new
+    if (user == null)
+    {
+        return NotFound(new
         {
-            message = "Login successful",
-            user = user
+            message = "User not found"
         });
     }
+
+    return Ok(new
+    {
+        message = "Login successful",
+        user = user
+    });
+}
 }

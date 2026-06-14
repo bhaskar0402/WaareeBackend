@@ -1450,19 +1450,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\M&M SERVICE LAPTOP\\.nuget\\packages\\": {}
+    "/Users/bhaskaradhikari/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\M&M SERVICE LAPTOP\\WaareeBackend\\Waaree.Api.csproj",
+      "projectUniqueName": "/Users/bhaskaradhikari/WaareeBackend/Waaree.Api/Waaree.Api.csproj",
       "projectName": "Waaree.Api",
-      "projectPath": "C:\\Users\\M&M SERVICE LAPTOP\\WaareeBackend\\Waaree.Api.csproj",
-      "packagesPath": "C:\\Users\\M&M SERVICE LAPTOP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\M&M SERVICE LAPTOP\\WaareeBackend\\obj\\",
+      "projectPath": "/Users/bhaskaradhikari/WaareeBackend/Waaree.Api/Waaree.Api.csproj",
+      "packagesPath": "/Users/bhaskaradhikari/.nuget/packages/",
+      "outputPath": "/Users/bhaskaradhikari/WaareeBackend/Waaree.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\M&M SERVICE LAPTOP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "/Users/bhaskaradhikari/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -1530,7 +1530,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.301/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

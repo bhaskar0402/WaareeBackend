@@ -5,23 +5,34 @@ using Waaree.Api.Models;
 namespace Waaree.Api.Services;
 
 // This service handles login logic.
-// Current mode: memory login.
-// Future mode: check AppUser table in Dataverse.
+// Memory mode: returns temporary user.
+// Dataverse mode: checks App User table in Dataverse.
 public class AuthService
 {
     private readonly AppSettings _appSettings;
+    private readonly DataverseUserService _dataverseUserService;
 
-    public AuthService(IOptions<AppSettings> options)
+    public AuthService(
+        IOptions<AppSettings> options,
+        DataverseUserService dataverseUserService)
     {
         _appSettings = options.Value;
+        _dataverseUserService = dataverseUserService;
     }
 
-    public AppUser LoginByMobile(string mobile)
+    public AppUser? LoginByMobile(string mobile)
     {
-        // Later, if Dataverse is enabled, we will search AppUser table here
+        // Real Dataverse login
         if (_appSettings.UseDataverse)
         {
-            // Placeholder for future Dataverse user lookup
+            var result = _dataverseUserService.LoginByMobile(mobile);
+
+            if (!result.Success || result.Data == null)
+            {
+                return null;
+            }
+
+            return result.Data;
         }
 
         // Temporary memory login for local development

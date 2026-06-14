@@ -4,48 +4,56 @@ using Waaree.Api.Models;
 
 namespace Waaree.Api.Services;
 
-// This service handles task-related logic.
-// Currently it supports memory mode.
-// Later Dataverse mode will save/read from Dataverse.
+// This service handles task-related business logic.
+// It supports both Memory Mode and Dataverse Mode.
 public class TaskService
 {
     private readonly AppSettings _appSettings;
+    private readonly DataverseTaskService _dataverseTaskService;
 
     // Temporary memory storage for local testing
     private static List<TaskItem> tasks = new();
 
-    public TaskService(IOptions<AppSettings> options)
+    public TaskService(
+        IOptions<AppSettings> options,
+        DataverseTaskService dataverseTaskService)
     {
         _appSettings = options.Value;
+        _dataverseTaskService = dataverseTaskService;
     }
 
+    // Get all tasks
     public List<TaskItem> GetAll()
     {
-        // If Dataverse is enabled, later we will call DataverseService here
+        // If Dataverse mode is ON, read tasks from Dataverse
         if (_appSettings.UseDataverse)
         {
-            // Placeholder for future Dataverse logic
-            return tasks;
+            var result = _dataverseTaskService.GetTasks();
+
+            if (result.Success && result.Data != null)
+            {
+                return result.Data;
+            }
+
+            return new List<TaskItem>();
         }
 
-        // Memory mode
+        // If Dataverse mode is OFF, read from memory
         return tasks;
     }
 
+    // Add/create new task
     public void Add(TaskItem task)
     {
-        // Temporary auto ID for memory mode
-        task.Id = tasks.Count + 1;
-
-        // If Dataverse is enabled, later we will save to Dataverse here
+        // If Dataverse mode is ON, save task into Dataverse
         if (_appSettings.UseDataverse)
         {
-            // Placeholder for future Dataverse logic
-            tasks.Add(task);
+            _dataverseTaskService.CreateTask(task);
             return;
         }
 
-        // Memory mode
+        // If Dataverse mode is OFF, save task into memory
+        task.Id = tasks.Count + 1;
         tasks.Add(task);
     }
 }
