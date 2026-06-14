@@ -26,6 +26,20 @@ public class HealthController : ControllerBase
         });
     }
 
+
+    // GET: /api/health/dataverse-test
+// This checks real Dataverse connection using Interactive Login
+    // GET: /api/health/dataverse-test
+// This checks real Dataverse connection using Interactive Login
+    [HttpGet("dataverse-test")]
+    public IActionResult TestDataverseConnection()
+    {
+        return Ok(new
+        {
+            status = _dataverseService.GetStatus(),
+            connectionTest = _dataverseService.TestConnection()
+        });
+    }
     // GET: /api/health/dataverse
     // This checks whether DataverseService is registered correctly
     [HttpGet("dataverse")]

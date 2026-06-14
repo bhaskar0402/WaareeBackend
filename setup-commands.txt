@@ -14,3 +14,6 @@ http://localhost:5238/api/health
 
 # Check Dataverse mode
 http://localhost:5238/api/health/dataverse
+
+
+http://localhost:5238/api/health/dataverse-test

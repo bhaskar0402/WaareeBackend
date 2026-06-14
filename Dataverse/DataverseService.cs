@@ -3,29 +3,33 @@ using Waaree.Api.Models;
 
 namespace Waaree.Api.Dataverse;
 
-// This service is the single place where our API will talk to Dataverse.
+// This service is the main wrapper where our API talks to Dataverse.
+// It calls DataverseConnection for authentication/connection.
 public class DataverseService
 {
-    private readonly AppSettings _appSettings;
+    private readonly DataverseConnection _dataverseConnection;
 
-    // AppSettings is read from appsettings.json
-    public DataverseService(IOptions<AppSettings> options)
+    public DataverseService(DataverseConnection dataverseConnection)
     {
-        _appSettings = options.Value;
+        _dataverseConnection = dataverseConnection;
     }
 
     // Tells whether app is running in Dataverse mode or Memory mode
     public bool IsDataverseEnabled()
     {
-        return _appSettings.UseDataverse;
+        return _dataverseConnection.IsDataverseEnabled();
     }
 
     // Used by health check API
     public string GetStatus()
     {
-        return _appSettings.UseDataverse
-            ? "Dataverse Mode Enabled"
-            : "Memory Mode Enabled";
+        return _dataverseConnection.GetStatus();
+    }
+
+    // This checks real Dataverse connection
+    public string TestConnection()
+    {
+        return _dataverseConnection.TestConnection();
     }
 
     // Later this will check AppUser table in Dataverse

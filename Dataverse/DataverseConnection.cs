@@ -1,9 +1,10 @@
 using Microsoft.Extensions.Options;
+using Microsoft.PowerPlatform.Dataverse.Client;
 
 namespace Waaree.Api.Dataverse;
 
-// This class will handle Dataverse connection/authentication.
-// Later we will add Interactive Login code here.
+// This class handles Dataverse connection/authentication.
+// We are using Interactive Login, not ClientId/ClientSecret.
 public class DataverseConnection
 {
     private readonly AppSettings _appSettings;
@@ -31,11 +32,32 @@ public class DataverseConnection
             return "Memory Mode Enabled";
         }
 
-        if (string.IsNullOrWhiteSpace(_dataverseSettings.EnvironmentUrl))
+        return $"Dataverse Mode Enabled for {_dataverseSettings.EnvironmentUrl}";
+    }
+
+    // This creates Dataverse connection using interactive Microsoft login.
+    public ServiceClient CreateClient()
+    {
+        var connectionString =
+            $"AuthType=OAuth;" +
+            $"Url={_dataverseSettings.EnvironmentUrl};" +
+            $"ClientId=51f81489-12ee-4a9e-aaae-a2591f45987d;" +
+            $"RedirectUri=http://localhost;" +
+            $"LoginPrompt=Auto";
+
+        return new ServiceClient(connectionString);
+    }
+
+    // This method checks whether ASP.NET can connect to Dataverse.
+    public string TestConnection()
+    {
+        var client = CreateClient();
+
+        if (client.IsReady)
         {
-            return "Dataverse Mode Enabled, but EnvironmentUrl is missing";
+            return "Dataverse connection successful";
         }
 
-        return $"Dataverse Mode Enabled for {_dataverseSettings.EnvironmentUrl}";
+        return $"Dataverse connection failed: {client.LastError}";
     }
 }

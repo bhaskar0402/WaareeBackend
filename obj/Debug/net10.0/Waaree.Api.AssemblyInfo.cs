@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Waaree.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2f919ae52239f3ba3840353922382645a4bb29a0")]
 [assembly: System.Reflection.AssemblyProductAttribute("Waaree.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Waaree.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
