@@ -43,6 +43,8 @@ public class TasksController : ControllerBase
             Priority = request.Priority,
             ProductServices = request.ProductServices,
             PaymentTerms = request.PaymentTerms,
+            Reminder = request.Reminder,
+            Repeat = request.Repeat,
             Description = request.Description
         };
 

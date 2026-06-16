@@ -34,17 +34,22 @@ public class DataverseTaskService
             };
         }
 
-        // Build Dataverse query
+        // Build Dataverse query and select only the columns our API needs
         var query = new QueryExpression(DataverseTables.TaskTable)
         {
             ColumnSet = new ColumnSet(
+                DataverseTables.TaskOwner,
                 DataverseTables.TaskSubject,
                 DataverseTables.TaskDueDate,
+                DataverseTables.TaskContact,
+                DataverseTables.TaskAccount,
                 DataverseTables.TaskStatus,
                 DataverseTables.TaskPriority,
-                DataverseTables.TaskDescription,
-                DataverseTables.TaskContact,
-                DataverseTables.TaskAccount
+                DataverseTables.TaskProductServices,
+                DataverseTables.TaskPaymentTerms,
+                DataverseTables.TaskReminder,
+                DataverseTables.TaskRepeat,
+                DataverseTables.TaskDescription
             )
         };
 
@@ -58,15 +63,23 @@ public class DataverseTaskService
         {
             tasks.Add(new TaskItem
             {
-                // Dataverse record id can be mapped later
+                // Dataverse GUID can be mapped later if needed
                 Id = 0,
 
-                // Read values from Dataverse columns
+                TaskOwner = entity.GetAttributeValue<string>(
+                    DataverseTables.TaskOwner) ?? "",
+
                 Subject = entity.GetAttributeValue<string>(
                     DataverseTables.TaskSubject) ?? "",
 
                 DueDate = entity.GetAttributeValue<DateTime>(
                     DataverseTables.TaskDueDate),
+
+                Contact = entity.GetAttributeValue<string>(
+                    DataverseTables.TaskContact) ?? "",
+
+                Account = entity.GetAttributeValue<string>(
+                    DataverseTables.TaskAccount) ?? "",
 
                 Status = entity.GetAttributeValue<string>(
                     DataverseTables.TaskStatus) ?? "",
@@ -74,14 +87,21 @@ public class DataverseTaskService
                 Priority = entity.GetAttributeValue<string>(
                     DataverseTables.TaskPriority) ?? "",
 
+                ProductServices = entity.GetAttributeValue<string>(
+                    DataverseTables.TaskProductServices) ?? "",
+
+                PaymentTerms = entity.GetAttributeValue<string>(
+                    DataverseTables.TaskPaymentTerms) ?? "",
+
+                Reminder = entity.Contains(DataverseTables.TaskReminder)
+                    ? entity.GetAttributeValue<DateTime>(DataverseTables.TaskReminder)
+                    : null,
+
+                Repeat = entity.GetAttributeValue<string>(
+                    DataverseTables.TaskRepeat) ?? "",
+
                 Description = entity.GetAttributeValue<string>(
-                    DataverseTables.TaskDescription) ?? "",
-
-                Contact = entity.GetAttributeValue<string>(
-                    DataverseTables.TaskContact) ?? "",
-
-                Account = entity.GetAttributeValue<string>(
-                    DataverseTables.TaskAccount) ?? ""
+                    DataverseTables.TaskDescription) ?? ""
             });
         }
 
@@ -111,17 +131,27 @@ public class DataverseTaskService
             };
         }
 
-        // Create new Dataverse entity
+        // Create new Dataverse entity for Task table
         var entity = new Entity(DataverseTables.TaskTable);
 
-        // Map TaskItem fields to Dataverse columns
+        // Map TaskItem model fields to Dataverse columns
+        entity[DataverseTables.TaskOwner] = task.TaskOwner;
         entity[DataverseTables.TaskSubject] = task.Subject;
         entity[DataverseTables.TaskDueDate] = task.DueDate;
-        entity[DataverseTables.TaskStatus] = task.Status;
-        entity[DataverseTables.TaskPriority] = task.Priority;
-        entity[DataverseTables.TaskDescription] = task.Description;
         entity[DataverseTables.TaskContact] = task.Contact;
         entity[DataverseTables.TaskAccount] = task.Account;
+        entity[DataverseTables.TaskStatus] = task.Status;
+        entity[DataverseTables.TaskPriority] = task.Priority;
+        entity[DataverseTables.TaskProductServices] = task.ProductServices;
+        entity[DataverseTables.TaskPaymentTerms] = task.PaymentTerms;
+        entity[DataverseTables.TaskRepeat] = task.Repeat;
+        entity[DataverseTables.TaskDescription] = task.Description;
+
+        // Only send Reminder if user provided it
+        if (task.Reminder.HasValue)
+        {
+            entity[DataverseTables.TaskReminder] = task.Reminder.Value;
+        }
 
         // Save record into Dataverse
         client.Create(entity);

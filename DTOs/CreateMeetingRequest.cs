@@ -8,9 +8,11 @@ public class CreateMeetingRequest
     public DateTime FromDateTime { get; set; }
     public DateTime ToDateTime { get; set; }
     public string Host { get; set; } = "";
+    public string Participants { get; set; } = "";
     public string Account { get; set; } = "";
     public string Contact { get; set; } = "";
     public string EventStatus { get; set; } = "";
     public string ProductServices { get; set; } = "";
+    public string Repeat { get; set; } = "";
     public string Description { get; set; } = "";
 }

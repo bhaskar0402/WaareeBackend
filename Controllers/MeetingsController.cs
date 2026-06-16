@@ -33,10 +33,12 @@ public class MeetingsController : ControllerBase
             FromDateTime = request.FromDateTime,
             ToDateTime = request.ToDateTime,
             Host = request.Host,
+            Participants = request.Participants,
             Account = request.Account,
             Contact = request.Contact,
             EventStatus = request.EventStatus,
             ProductServices = request.ProductServices,
+            Repeat = request.Repeat,
             Description = request.Description
         };
 

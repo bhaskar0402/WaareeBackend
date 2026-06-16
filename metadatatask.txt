@@ -1,0 +1,315 @@
+{
+  "tableDisplayName": "Task",
+  "tableLogicalName": "cr034_task",
+  "tableSchemaName": "cr034_Task",
+  "columns": [
+    {
+      "displayName": "Account",
+      "logicalName": "cr034_account",
+      "schemaName": "cr034_Account",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Contact",
+      "logicalName": "cr034_contact",
+      "schemaName": "cr034_Contact",
+      "type": "String",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "displayName": "Description",
+      "logicalName": "cr034_description",
+      "schemaName": "cr034_Description",
+      "type": "Memo",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "DueDate",
+      "logicalName": "cr034_duedate",
+      "schemaName": "cr034_DueDate",
+      "type": "DateTime",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "displayName": "Payment Terms",
+      "logicalName": "cr034_paymentterms",
+      "schemaName": "cr034_PaymentTerms",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Priority",
+      "logicalName": "cr034_priority",
+      "schemaName": "cr034_Priority",
+      "type": "String",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "displayName": "Product Services",
+      "logicalName": "cr034_productservices",
+      "schemaName": "cr034_ProductServices",
+      "type": "String",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "displayName": "Reminder",
+      "logicalName": "cr034_reminder",
+      "schemaName": "cr034_Reminder",
+      "type": "DateTime",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Repeat",
+      "logicalName": "cr034_repeat",
+      "schemaName": "cr034_Repeat",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Status",
+      "logicalName": "cr034_status",
+      "schemaName": "cr034_Status",
+      "type": "String",
+      "requiredLevel": "ApplicationRequired"
+    },
+    {
+      "displayName": "Subject",
+      "logicalName": "cr034_subject",
+      "schemaName": "cr034_Subject",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Task",
+      "logicalName": "cr034_taskid",
+      "schemaName": "cr034_TaskId",
+      "type": "Uniqueidentifier",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Task Owner",
+      "logicalName": "cr034_taskowner",
+      "schemaName": "cr034_TaskOwner",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Created By",
+      "logicalName": "createdby",
+      "schemaName": "CreatedBy",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "createdbyname",
+      "schemaName": "CreatedByName",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "createdbyyominame",
+      "schemaName": "CreatedByYomiName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Created On",
+      "logicalName": "createdon",
+      "schemaName": "CreatedOn",
+      "type": "DateTime",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Created By (Delegate)",
+      "logicalName": "createdonbehalfby",
+      "schemaName": "CreatedOnBehalfBy",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "createdonbehalfbyname",
+      "schemaName": "CreatedOnBehalfByName",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "createdonbehalfbyyominame",
+      "schemaName": "CreatedOnBehalfByYomiName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Import Sequence Number",
+      "logicalName": "importsequencenumber",
+      "schemaName": "ImportSequenceNumber",
+      "type": "Integer",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Modified By",
+      "logicalName": "modifiedby",
+      "schemaName": "ModifiedBy",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "modifiedbyname",
+      "schemaName": "ModifiedByName",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "modifiedbyyominame",
+      "schemaName": "ModifiedByYomiName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Modified On",
+      "logicalName": "modifiedon",
+      "schemaName": "ModifiedOn",
+      "type": "DateTime",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Modified By (Delegate)",
+      "logicalName": "modifiedonbehalfby",
+      "schemaName": "ModifiedOnBehalfBy",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "modifiedonbehalfbyname",
+      "schemaName": "ModifiedOnBehalfByName",
+      "type": "String",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "modifiedonbehalfbyyominame",
+      "schemaName": "ModifiedOnBehalfByYomiName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Record Created On",
+      "logicalName": "overriddencreatedon",
+      "schemaName": "OverriddenCreatedOn",
+      "type": "DateTime",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Owner",
+      "logicalName": "ownerid",
+      "schemaName": "OwnerId",
+      "type": "Owner",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "",
+      "logicalName": "owneridname",
+      "schemaName": "OwnerIdName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "",
+      "logicalName": "owneridtype",
+      "schemaName": "OwnerIdType",
+      "type": "EntityName",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "",
+      "logicalName": "owneridyominame",
+      "schemaName": "OwnerIdYomiName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Owning Business Unit",
+      "logicalName": "owningbusinessunit",
+      "schemaName": "OwningBusinessUnit",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "owningbusinessunitname",
+      "schemaName": "OwningBusinessUnitName",
+      "type": "String",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "Owning Team",
+      "logicalName": "owningteam",
+      "schemaName": "OwningTeam",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Owning User",
+      "logicalName": "owninguser",
+      "schemaName": "OwningUser",
+      "type": "Lookup",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Status",
+      "logicalName": "statecode",
+      "schemaName": "statecode",
+      "type": "State",
+      "requiredLevel": "SystemRequired"
+    },
+    {
+      "displayName": "",
+      "logicalName": "statecodename",
+      "schemaName": "statecodeName",
+      "type": "Virtual",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Status Reason",
+      "logicalName": "statuscode",
+      "schemaName": "statuscode",
+      "type": "Status",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "",
+      "logicalName": "statuscodename",
+      "schemaName": "statuscodeName",
+      "type": "Virtual",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Time Zone Rule Version Number",
+      "logicalName": "timezoneruleversionnumber",
+      "schemaName": "TimeZoneRuleVersionNumber",
+      "type": "Integer",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "UTC Conversion Time Zone Code",
+      "logicalName": "utcconversiontimezonecode",
+      "schemaName": "UTCConversionTimeZoneCode",
+      "type": "Integer",
+      "requiredLevel": "None"
+    },
+    {
+      "displayName": "Version Number",
+      "logicalName": "versionnumber",
+      "schemaName": "VersionNumber",
+      "type": "BigInt",
+      "requiredLevel": "None"
+    }
+  ]
+}
